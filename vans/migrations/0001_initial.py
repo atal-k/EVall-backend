@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name_plural': 'Vans',
-                'ordering': ['-created_at'],
+                'ordering': ['created_at'],
             },
         ),
     ]

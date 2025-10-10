@@ -42,7 +42,7 @@ class Van(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        ordering = ['-created_at']  # Newest first
+        ordering = ['created_at']  # Oldest first
         verbose_name_plural = "Vans"
     
     def __str__(self):
