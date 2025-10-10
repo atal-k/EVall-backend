@@ -1,0 +1,28 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-stats">
+    <h2>Van Statistics</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ light_duty_count }}</h3>
+            <p>Light Duty Vans</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ medium_duty_count }}</h3>
+            <p>Medium Duty Vans</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ heavy_duty_count }}</h3>
+            <p>Heavy Duty Vans</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ featured_count }}</h3>
+            <p>Featured Vans</p>
+        </div>
+    </div>
+</div>
+
+{{ block.super }}
+{% endblock %}
