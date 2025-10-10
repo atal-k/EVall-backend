@@ -5,7 +5,9 @@ class Command(BaseCommand):
     help = 'Import van data'
 
     def handle(self, *args, **kwargs):
-        Van.objects.all().delete()  # Clear existing data
+        if Van.objects.exists():
+            self.stdout.write(self.style.WARNING("Vans already imported — skipping"))
+            return
         
         vans_data = [
             {
