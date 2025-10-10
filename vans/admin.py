@@ -59,10 +59,13 @@ class VanAdmin(admin.ModelAdmin):
     @admin.display(description='Image')
     def image_preview(self, obj):
         if obj.images and len(obj.images) > 0:
+            # Base GitHub raw URL (replace with your own)
+            base_url = "https://raw.githubusercontent.com/atal-k/EVall-backend/main/media/vans/"
             return format_html(
-                '<img src="/media/vans/{}" class="van-image-thumb" />',
-                obj.images[0]
-            )
+            '<img src="{}{}" class="van-image-thumb" />',
+            base_url,
+            obj.images[0]
+        )
         return '-'
     
     @admin.display(description='Badge')
