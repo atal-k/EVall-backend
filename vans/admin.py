@@ -55,7 +55,7 @@ class VanAdmin(admin.ModelAdmin):
             CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/dak7ws0xx/image/upload/v1760352909'
             return format_html(
                 '<img src="{}" class="van-image-thumb" />',
-                f"{CLOUDINARY_BASE_URL}/{obj.images[0]}"
+                f"{CLOUDINARY_BASE_URL}/vans/{obj.images[0]}"
             )
         return '-'
     
