@@ -1,0 +1,21 @@
+<div class="cloudinary-upload-widget">
+    <!-- Hidden input to store JSON array of image URLs -->
+    <input type="hidden" 
+           name="{{ widget.name }}" 
+           id="id_{{ widget.name }}"
+           value='{{ widget.value|default:"[]"|escapejs }}'
+           data-cloud-name="{{ widget.cloud_name }}"
+           data-upload-preset="{{ widget.upload_preset }}">
+    
+    <!-- Upload button -->
+    <button type="button" 
+            class="cloudinary-upload-btn button" 
+            onclick="openCloudinaryWidget('id_{{ widget.name }}')">
+        📷 Upload Images
+    </button>
+    
+    <!-- Image preview gallery -->
+    <div id="preview_id_{{ widget.name }}" class="cloudinary-preview-gallery">
+        <!-- Previews will be inserted here by JavaScript -->
+    </div>
+</div>

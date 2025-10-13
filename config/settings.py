@@ -9,9 +9,14 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+
+from dotenv import load_dotenv
 import os
 import dj_database_url
 from pathlib import Path
+import cloudinary
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,6 +49,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+
+    'cloudinary',
 
     # Your apps
     'vans',
@@ -86,21 +93,27 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+# DEBUG flag
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
-}
-
+# DATABASE configuration
+if DEBUG:
+    # Development: SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # Production: use DATABASE_URL from environment
+    DATABASES = {
+        'default': dj_database_url.parse(
+            os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True
+        )
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -120,7 +133,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Cloudinary configuration
+CLOUDINARY = {
+    'cloud_name': os.getenv('CLOUDINARY_CLOUD_NAME', 'fallback_cloud_name'),
+    'api_key': os.getenv('CLOUDINARY_API_KEY', 'fallback_api_key'),
+    'api_secret': os.getenv('CLOUDINARY_API_SECRET', 'fallback_api_secret'),
+}
 
+# Configure Cloudinary SDK
+cloudinary.config(
+    cloud_name=CLOUDINARY['cloud_name'],
+    api_key=CLOUDINARY['api_key'],
+    api_secret=CLOUDINARY['api_secret']
+)
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 

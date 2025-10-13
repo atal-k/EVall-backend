@@ -1,39 +1,32 @@
 # ============================================================================
 # FILE: vans/admin.py
-# Enhanced admin configuration
+# UPDATE: Use custom form and update image preview
 # ============================================================================
 
 from django.contrib import admin
 from django.utils.html import format_html
 from .models import Van
+from .forms import VanAdminForm  # Add this import
 
 @admin.register(Van)
 class VanAdmin(admin.ModelAdmin):
-    # List display
+    form = VanAdminForm  # Add this line
+    
     list_display = [
         'id', 'image_preview', 'name', 'category', 'colored_badge', 
         'price_display', 'range_display', 'is_featured'
     ]
     
-    # Filters
     list_filter = [
         'category', 'status', 'charging_type', 
         'is_featured', 'created_at'
     ]
     
-    # Search
     search_fields = ['name', 'tagline']
-    
-    # Editable in list
     list_editable = ['is_featured']
-    
-    # Ordering
     ordering = ['created_at']
-    
-    # Pagination
     list_per_page = 20
     
-    # Fieldsets for form
     fieldsets = (
         ('Basic Information', {
             'fields': ('name', 'category', 'tagline', 'images')
@@ -55,17 +48,15 @@ class VanAdmin(admin.ModelAdmin):
         }),
     )
     
-    # Custom methods for list display
     @admin.display(description='Image')
     def image_preview(self, obj):
         if obj.images and len(obj.images) > 0:
-            # Base GitHub raw URL (replace with your own)
-            base_url = "https://raw.githubusercontent.com/atal-k/EVall-backend/main/media/vans/"
+            # Display Cloudinary image (first image)
+            CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/dak7ws0xx/image/upload/v1760352909'
             return format_html(
-            '<img src="{}{}" class="van-image-thumb" />',
-            base_url,
-            obj.images[0]
-        )
+                '<img src="{}" class="van-image-thumb" />',
+                f"{CLOUDINARY_BASE_URL}/{obj.images[0]}"
+            )
         return '-'
     
     @admin.display(description='Badge')
@@ -91,7 +82,6 @@ class VanAdmin(admin.ModelAdmin):
     def range_display(self, obj):
         return f"{obj.range_km} km"
     
-    # Bulk actions
     actions = ['mark_as_featured', 'mark_as_not_featured', 'mark_as_available']
     
     @admin.action(description='Mark selected as featured')
