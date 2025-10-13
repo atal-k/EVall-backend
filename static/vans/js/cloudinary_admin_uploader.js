@@ -57,7 +57,7 @@ function renderPreviews(inputId, images) {
     const CLOUDINARY_BASE_URL = 'https://res.cloudinary.com/dak7ws0xx/image/upload/v1760352909';    
     previewContainer.innerHTML = images.map((url, index) => `
         <div class="cloudinary-preview-item">
-            <img src="${CLOUDINARY_BASE_URL}/vans/${url}" alt="Van image ${index + 1}">
+            <img src="${CLOUDINARY_BASE_URL}/${url}" alt="Van image ${index + 1}">
             <button type="button" 
                     class="remove-image-btn" 
                     onclick="removeImage('${inputId}', ${index})"
