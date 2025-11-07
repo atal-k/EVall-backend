@@ -128,7 +128,8 @@ class CustomerFeedback(TimeStampedModel):
 
     # Vehicle details
     model_name = models.CharField(max_length=255, )
-    vehicle_type = models.PositiveSmallIntegerField()
+    vehicle_type = models.CharField(max_length=255, null=True)
+    vehicle_other = models.CharField(max_length=255, null=True)
 
     # Ratings / performance and experiences stored as JSON for flexibility
     vehicle_performance = JSONField(default=dict)
@@ -158,7 +159,7 @@ class TestDriveBooking(TimeStampedModel):
     # Preferences
     selected_models = JSONField(default=list)
     other_model = models.CharField(max_length=255, null=True)
-    preferred_time_slot = models.CharField(max_length=128)
+    time_slot = models.CharField(max_length=128)
 
     business_segment = models.CharField(max_length=255)
     business_segment_other = models.CharField(max_length=255, null=True)
