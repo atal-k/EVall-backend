@@ -175,7 +175,13 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = ['*']
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",  # Your React app
+#     "http://127.0.0.1:3000",
+#     "http://192.168.29.115:3000",
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # CORS_ALLOWED_ORIGINS = os.environ.get(
 #     'CORS_ALLOWED_ORIGINS', 
