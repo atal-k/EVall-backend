@@ -25,14 +25,14 @@ class TimeStampedModel(models.Model):
 class CustomerSupport(TimeStampedModel):
     """Stores data submitted via /api/customer-support"""
 
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    contact_number = models.CharField(max_length=64)
+    name = models.CharField(max_length=255, null=True)
+    email = models.EmailField(null=True)
+    contact_number = models.CharField(max_length=64, null=True)
     company_name = models.CharField(max_length=255, null=True)
-    state = models.CharField(max_length=128, )
-    city = models.CharField(max_length=128, )
-    vehicle_type = models.PositiveSmallIntegerField()
-    message = models.TextField()
+    state = models.CharField(max_length=128, null=True)
+    city = models.CharField(max_length=128, null=True)
+    vehicle_type = models.CharField(max_length=255, null=True)
+    message = models.TextField(null=True)
     consent1 = models.BooleanField(default=False)
     consent2 = models.BooleanField(default=False)
     raw_payload = JSONField(null=True)
@@ -47,16 +47,16 @@ class CustomerSupport(TimeStampedModel):
 class RequestDemo(TimeStampedModel):
     """Stores data submitted via /api/request-demo"""
 
-    name = models.CharField(max_length=255)
-    company_name = models.CharField(max_length=255)
-    designation = models.CharField(max_length=255)
-    contact_number = models.CharField(max_length=64)
+    name = models.CharField(max_length=255, null=True)
+    company_name = models.CharField(max_length=255, null=True)
+    designation = models.CharField(max_length=255, null=True)
+    contact_number = models.CharField(max_length=64, null=True)
     alternate_number = models.CharField(max_length=64, null=True)
-    email = models.EmailField()
+    email = models.EmailField(null=True)
 
-    address = models.TextField()
-    city = models.CharField(max_length=128)
-    state = models.CharField(max_length=128)
+    address = models.TextField(null=True)
+    city = models.CharField(max_length=128, null=True)
+    state = models.CharField(max_length=128, null=True)
 
     vehicle_types = JSONField(default=list)  # list of selected vehicle types
     vehicle_other = models.CharField(max_length=255, null=True)
@@ -64,13 +64,13 @@ class RequestDemo(TimeStampedModel):
     applications = JSONField(default=list)
     application_other = models.CharField(max_length=255, null=True)
 
-    fleet_size = models.CharField(max_length=128)
-    timeline = models.CharField(max_length=128)
-    procurement_mode = models.CharField(max_length=128)
+    fleet_size = models.CharField(max_length=128, null=True)
+    timeline = models.CharField(max_length=128, null=True)
+    procurement_mode = models.CharField(max_length=128, null=True)
     additional_info = models.TextField(null=True)
 
     consent = models.BooleanField(default=False)
-    requested_date = models.DateField()
+    requested_date = models.DateField(null=True)
 
     raw_payload = JSONField(null=True)
 
@@ -85,25 +85,25 @@ class DealershipEnquiry(TimeStampedModel):
     """Stores data submitted via /api/dealership-enquiry"""
 
     # Personal details
-    name = models.CharField(max_length=255)
-    company_name = models.CharField(max_length=255)
-    address = models.TextField()
-    city = models.CharField(max_length=128)
-    state = models.CharField(max_length=128)
-    pincode = models.CharField(max_length=20)
-    contact_number = models.CharField(max_length=64)
+    name = models.CharField(max_length=255, null=True)
+    company_name = models.CharField(max_length=255, null=True)
+    address = models.TextField(null=True)
+    city = models.CharField(max_length=128, null=True)
+    state = models.CharField(max_length=128, null=True)
+    pincode = models.CharField(max_length=20, null=True)
+    contact_number = models.CharField(max_length=64, null=True)
     alternate_number = models.CharField(max_length=64, null=True)
-    email = models.EmailField()
+    email = models.EmailField(null=True)
     website = models.CharField(max_length=255, null=True)
 
     # Business details
-    current_business = models.CharField(max_length=255)
-    experience = models.PositiveIntegerField(validators=[MinValueValidator(0)])
-    proposed_territory = models.CharField(max_length=255)
-    firm_turnover = models.BigIntegerField()
-    investment_capacity = models.BigIntegerField()
+    current_business = models.CharField(max_length=255, null=True)
+    experience = models.PositiveIntegerField(validators=[MinValueValidator(0)], null=True)
+    proposed_territory = models.CharField(max_length=255, null=True)
+    firm_turnover = models.BigIntegerField(null=True)
+    investment_capacity = models.BigIntegerField(null=True)
     infrastructure = JSONField(default=list)
-    reason_for_interest = models.TextField()
+    reason_for_interest = models.TextField(null=True)
 
     other_info = models.TextField(null=True)
     raw_payload = JSONField(null=True)
@@ -119,15 +119,15 @@ class CustomerFeedback(TimeStampedModel):
     """Stores feedback submitted via /api/feedback"""
 
     # Customer details
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
     company_name = models.CharField(max_length=255, null=True)
-    contact_number = models.CharField(max_length=64)
-    email = models.EmailField()
-    state = models.CharField(max_length=128, )
-    city = models.CharField(max_length=128, )
+    contact_number = models.CharField(max_length=64, null=True)
+    email = models.EmailField(null=True)
+    state = models.CharField(max_length=128, null=True)
+    city = models.CharField(max_length=128, null=True)
 
     # Vehicle details
-    model_name = models.CharField(max_length=255, )
+    model_name = models.CharField(max_length=255, null=True)
     vehicle_type = models.CharField(max_length=255, null=True)
     vehicle_other = models.CharField(max_length=255, null=True)
 
@@ -149,23 +149,23 @@ class TestDriveBooking(TimeStampedModel):
     """Stores test drive booking data submitted via /api/testdrive-booking"""
 
     # Customer details
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True)
     company_name = models.CharField(max_length=255, null=True)
-    contact_number = models.CharField(max_length=64)
-    email = models.EmailField()
-    state = models.CharField(max_length=128)
-    city = models.CharField(max_length=128)
+    contact_number = models.CharField(max_length=64, null=True)
+    email = models.EmailField(null=True)
+    state = models.CharField(max_length=128, null=True)
+    city = models.CharField(max_length=128, null=True)
 
     # Preferences
     vehicle_types = JSONField(default=list)  # list of selected vehicle types
     vehicle_other = models.CharField(max_length=255, null=True)
-    time_slot = models.CharField(max_length=128)
+    time_slot = models.CharField(max_length=128, null=True)
 
-    business_segment = models.CharField(max_length=255)
+    business_segment = models.CharField(max_length=255, null=True)
     business_segment_other = models.CharField(max_length=255, null=True)
 
     consent = models.BooleanField(default=False)
-    test_drive_date = models.DateField()
+    test_drive_date = models.DateField(null=True)
 
     raw_payload = JSONField(null=True)
 
