@@ -26,16 +26,16 @@ class CustomerSupport(TimeStampedModel):
     """Stores data submitted via /api/customer-support"""
 
     name = models.CharField(max_length=255)
-    email = models.EmailField(null=True, blank=True)
+    email = models.EmailField()
     contact_number = models.CharField(max_length=64)
-    company_name = models.CharField(max_length=255, null=True, blank=True)
-    state = models.CharField(max_length=128, null=True, blank=True)
-    city = models.CharField(max_length=128, null=True, blank=True)
-    vehicle_type = models.PositiveSmallIntegerField(default=1)
-    message = models.TextField(null=True, blank=True)
+    company_name = models.CharField(max_length=255, null=True)
+    state = models.CharField(max_length=128, )
+    city = models.CharField(max_length=128, )
+    vehicle_type = models.PositiveSmallIntegerField()
+    message = models.TextField()
     consent1 = models.BooleanField(default=False)
     consent2 = models.BooleanField(default=False)
-    raw_payload = JSONField(null=True, blank=True)
+    raw_payload = JSONField(null=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -48,31 +48,31 @@ class RequestDemo(TimeStampedModel):
     """Stores data submitted via /api/request-demo"""
 
     name = models.CharField(max_length=255)
-    company_name = models.CharField(max_length=255, null=True, blank=True)
-    designation = models.CharField(max_length=255, null=True, blank=True)
+    company_name = models.CharField(max_length=255)
+    designation = models.CharField(max_length=255)
     contact_number = models.CharField(max_length=64)
-    alternate_number = models.CharField(max_length=64, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
+    alternate_number = models.CharField(max_length=64, null=True)
+    email = models.EmailField()
 
-    address = models.TextField(null=True, blank=True)
-    city = models.CharField(max_length=128, null=True, blank=True)
-    state = models.CharField(max_length=128, null=True, blank=True)
+    address = models.TextField()
+    city = models.CharField(max_length=128)
+    state = models.CharField(max_length=128)
 
-    vehicle_types = JSONField(default=list, blank=True)  # list of selected vehicle types
-    vehicle_other = models.CharField(max_length=255, null=True, blank=True)
+    vehicle_types = JSONField(default=list)  # list of selected vehicle types
+    vehicle_other = models.CharField(max_length=255, null=True)
 
-    applications = JSONField(default=list, blank=True)
-    application_other = models.CharField(max_length=255, null=True, blank=True)
+    applications = JSONField(default=list)
+    application_other = models.CharField(max_length=255, null=True)
 
-    fleet_size = models.CharField(max_length=128, null=True, blank=True)
-    timeline = models.CharField(max_length=128, null=True, blank=True)
-    procurement_mode = models.CharField(max_length=128, null=True, blank=True)
-    additional_info = models.TextField(null=True, blank=True)
+    fleet_size = models.CharField(max_length=128)
+    timeline = models.CharField(max_length=128)
+    procurement_mode = models.CharField(max_length=128)
+    additional_info = models.TextField(null=True)
 
     consent = models.BooleanField(default=False)
-    requested_date = models.DateField(null=True, blank=True)
+    requested_date = models.DateField()
 
-    raw_payload = JSONField(null=True, blank=True)
+    raw_payload = JSONField(null=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -86,27 +86,27 @@ class DealershipEnquiry(TimeStampedModel):
 
     # Personal details
     name = models.CharField(max_length=255)
-    company_name = models.CharField(max_length=255, null=True, blank=True)
-    address = models.TextField(null=True, blank=True)
-    city = models.CharField(max_length=128, null=True, blank=True)
-    state = models.CharField(max_length=128, null=True, blank=True)
-    pincode = models.CharField(max_length=20, null=True, blank=True)
+    company_name = models.CharField(max_length=255)
+    address = models.TextField()
+    city = models.CharField(max_length=128)
+    state = models.CharField(max_length=128)
+    pincode = models.CharField(max_length=20)
     contact_number = models.CharField(max_length=64)
-    alternate_number = models.CharField(max_length=64, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
-    website = models.CharField(max_length=255, null=True, blank=True)
+    alternate_number = models.CharField(max_length=64, null=True)
+    email = models.EmailField()
+    website = models.CharField(max_length=255, null=True)
 
     # Business details
-    current_business = models.CharField(max_length=255, null=True, blank=True)
-    experience = models.PositiveIntegerField(null=True, blank=True, validators=[MinValueValidator(0)])
-    proposed_territory = models.CharField(max_length=255, null=True, blank=True)
-    firm_turnover = models.BigIntegerField(null=True, blank=True)
-    investment_capacity = models.BigIntegerField(null=True, blank=True)
-    infrastructure = JSONField(default=list, blank=True)  # array of infrastructure items
-    reason_for_interest = models.TextField(null=True, blank=True)
+    current_business = models.CharField(max_length=255)
+    experience = models.PositiveIntegerField(validators=[MinValueValidator(0)])
+    proposed_territory = models.CharField(max_length=255)
+    firm_turnover = models.BigIntegerField()
+    investment_capacity = models.BigIntegerField()
+    infrastructure = JSONField(default=list)
+    reason_for_interest = models.TextField()
 
-    other_info = models.TextField(null=True, blank=True)
-    raw_payload = JSONField(null=True, blank=True)
+    other_info = models.TextField(null=True)
+    raw_payload = JSONField(null=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -119,23 +119,23 @@ class CustomerFeedback(TimeStampedModel):
     """Stores feedback submitted via /api/feedback"""
 
     # Customer details
-    name = models.CharField(max_length=255, null=True, blank=True)
-    company_name = models.CharField(max_length=255, null=True, blank=True)
-    contact_number = models.CharField(max_length=64, null=True, blank=True)
-    email = models.EmailField(null=True, blank=True)
-    state = models.CharField(max_length=128, null=True, blank=True)
-    city = models.CharField(max_length=128, null=True, blank=True)
+    name = models.CharField(max_length=255)
+    company_name = models.CharField(max_length=255, null=True)
+    contact_number = models.CharField(max_length=64)
+    email = models.EmailField()
+    state = models.CharField(max_length=128, )
+    city = models.CharField(max_length=128, )
 
     # Vehicle details
-    model_name = models.CharField(max_length=255, null=True, blank=True)
-    vehicle_type = models.PositiveSmallIntegerField(null=True, blank=True)
+    model_name = models.CharField(max_length=255, )
+    vehicle_type = models.PositiveSmallIntegerField()
 
     # Ratings / performance and experiences stored as JSON for flexibility
-    vehicle_performance = JSONField(default=dict, blank=True)
-    sales_service_experience = JSONField(default=dict, blank=True)
-    open_feedback = JSONField(default=dict, blank=True)
+    vehicle_performance = JSONField(default=dict)
+    sales_service_experience = JSONField(default=dict)
+    open_feedback = JSONField(default=dict)
 
-    raw_payload = JSONField(null=True, blank=True)
+    raw_payload = JSONField(null=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -149,24 +149,24 @@ class TestDriveBooking(TimeStampedModel):
 
     # Customer details
     name = models.CharField(max_length=255)
-    company_name = models.CharField(max_length=255, null=True, blank=True)
+    company_name = models.CharField(max_length=255, null=True)
     contact_number = models.CharField(max_length=64)
-    email = models.EmailField(null=True, blank=True)
-    state = models.CharField(max_length=128, null=True, blank=True)
-    city = models.CharField(max_length=128, null=True, blank=True)
+    email = models.EmailField()
+    state = models.CharField(max_length=128)
+    city = models.CharField(max_length=128)
 
     # Preferences
-    selected_models = JSONField(default=list, blank=True)
-    other_model = models.CharField(max_length=255, null=True, blank=True)
-    preferred_time_slot = models.CharField(max_length=128, null=True, blank=True)
+    selected_models = JSONField(default=list)
+    other_model = models.CharField(max_length=255, null=True)
+    preferred_time_slot = models.CharField(max_length=128)
 
-    business_segment = models.CharField(max_length=255, null=True, blank=True)
-    business_segment_other = models.CharField(max_length=255, null=True, blank=True)
+    business_segment = models.CharField(max_length=255)
+    business_segment_other = models.CharField(max_length=255, null=True)
 
     consent = models.BooleanField(default=False)
-    test_drive_date = models.DateField(null=True, blank=True)
+    test_drive_date = models.DateField()
 
-    raw_payload = JSONField(null=True, blank=True)
+    raw_payload = JSONField(null=True)
 
     class Meta:
         ordering = ['-created_at']
