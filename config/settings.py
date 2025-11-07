@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     # Your apps
     'vans',
+    'enquiries',
 ]
 
 MIDDLEWARE = [

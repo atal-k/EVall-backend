@@ -8,6 +8,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('admin/', admin.site.urls),
     path('api/', include('vans.urls')),  # All API routes under /api/
+    path('api/', include('enquiries.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # # Serve media files in development
