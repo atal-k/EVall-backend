@@ -157,8 +157,8 @@ class TestDriveBooking(TimeStampedModel):
     city = models.CharField(max_length=128)
 
     # Preferences
-    selected_models = JSONField(default=list)
-    other_model = models.CharField(max_length=255, null=True)
+    vehicle_types = JSONField(default=list)  # list of selected vehicle types
+    vehicle_other = models.CharField(max_length=255, null=True)
     time_slot = models.CharField(max_length=128)
 
     business_segment = models.CharField(max_length=255)
