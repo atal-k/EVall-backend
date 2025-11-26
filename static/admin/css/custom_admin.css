@@ -1,0 +1,64 @@
+/* # ============================================================================
+# FILE: static/admin/css/custom_admin.css
+# Minimal admin styling
+# ============================================================================ */
+
+/* Branding */
+#site-name a {
+    /* color: #667eea !important; */
+    font-weight: 700;
+    font-size: 30px;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dashboard-stats h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 36px;
+    margin-bottom: 6px;
+}
+
+.stat-card p {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* Van list image thumbnails */
+.van-image-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
