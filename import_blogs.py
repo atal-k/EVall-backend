@@ -141,8 +141,8 @@ blogs_data = [
                 }
             }
         ]
-    },
-       "featured_image_url": "/media/blog_featured/2025/11/ev-charging-summit.webp",
+        },
+       "featured_image_url": "/blog_featured/2025/11/ev-charging-summit.webp",
        "featured_image_alt": "Panel discussion at an EV infrastructure conference",
        "is_featured": False,
        "reading_time": 1,
@@ -506,7 +506,7 @@ blogs_data = [
             }
         ]
     },
-       "featured_image_url": "/media/blog_featured/2025/11/solid-state-batteries.webp",
+       "featured_image_url": "/blog_featured/2025/11/solid-state-batteries.webp",
        "featured_image_alt": "Concept render of a solid-state battery cell and urban delivery van silhouette",
        "is_featured": False,
        "reading_time": 1,
@@ -692,7 +692,7 @@ blogs_data = [
             }
         ]
     },
-       "featured_image_url": "/media/blog_featured/2025/11/customer-stories-hero.webp",
+       "featured_image_url": "/blog_featured/2025/11/customer-stories-hero.webp",
        "featured_image_alt": "Compact electric cargo truck parked on a busy city street",
        "is_featured": True,
        "reading_time": 1,
@@ -951,7 +951,7 @@ blogs_data = [
             }
         ]
     },
-       "featured_image_url": "/media/blog_featured/2025/11/portable-ev-charger-review.webp",
+       "featured_image_url": "/blog_featured/2025/11/portable-ev-charger-review.webp",
        "featured_image_alt": "Technician using a portable EV charger on a city delivery van",
        "is_featured": False,
        "reading_time": 1,
@@ -1316,7 +1316,7 @@ blogs_data = [
             }
         ]
     },
-       "featured_image_url": "/media/blog_featured/2025/11/managed-charging-services.webp",
+       "featured_image_url": "/blog_featured/2025/11/managed-charging-services.webp",
        "featured_image_alt": "Fleet manager reviewing managed charging dashboard with depot chargers in background",
        "is_featured": True,
        "reading_time": 2,
@@ -1541,7 +1541,7 @@ blogs_data = [
             }
         ]
     },
-       "featured_image_url": "/media/blog_featured/2025/11/charging-infra-banner.webp",
+       "featured_image_url": "/blog_featured/2025/11/charging-infra-banner.webp",
        "featured_image_alt": "Fast-charging station network in a developing city",
        "is_featured": True,
        "reading_time": 1,

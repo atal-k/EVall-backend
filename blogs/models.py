@@ -1,5 +1,5 @@
 # ============================================================================
-# FILE: blogs/models.py
+# FILE: blogs/models.py (FIXED)
 # ============================================================================
 """
 Blog models with EditorJS integration for rich content editing.
@@ -7,7 +7,7 @@ Blog models with EditorJS integration for rich content editing.
 from django.db import models
 from django.utils.text import slugify
 from django.utils import timezone
-from django_editorjs_fields import EditorJsJSONField
+from django_editorjs_fields import EditorJsJSONField, EditorJsTextField
 import re
 
 
@@ -57,23 +57,51 @@ class BlogPost(models.Model):
         plugins=[
             "@editorjs/paragraph",
             "@editorjs/header",
-            "@editorjs/list",
+            "@editorjs/list@latest",  # List plugin
             "@editorjs/image",
             "@editorjs/quote",
             "@editorjs/delimiter",
             "@editorjs/link",
+            "editorjs-hyperlink",
             "@editorjs/raw",
             "@editorjs/checklist",
             "@editorjs/table",
         ],
         tools={
+            # FIXED: Single, properly configured list tool
+            # "List": {  # Match the case from your API responses
+            #     "class": "List",
+            #     "inlineToolbar": True,
+            #     "config": {
+            #         "defaultStyle": "unordered"
+            #     }
+            # },
+            # Alternative approach - also keep lowercase for compatibility
+            "list": {
+                "class": "List",
+                "inlineToolbar": True,
+                "config": {
+                    "defaultStyle": "unordered"
+                }
+            },
             "Image": {
                 "config": {
                     "endpoints": {
                         "byFile": "/editorjs/image_upload/"
                     }
                 }
-            }
+            },
+            "Hyperlink": {
+                "class": "Hyperlink",
+                "config": {
+                    "shortcut": 'CMD+L',
+                    "target": '_blank',
+                    "rel": 'nofollow',
+                    "availableTargets": ['_blank', '_self'],
+                    "availableRels": ['author', 'noreferrer'],
+                    "validate": False,
+                }
+            },
         },
         null=True,
         blank=True,
@@ -207,15 +235,15 @@ class BlogPost(models.Model):
         # Extract text from EditorJS blocks
         if isinstance(self.content, dict) and 'blocks' in self.content:
             for block in self.content['blocks']:
-                if block.get('type') in ['paragraph', 'header', 'quote']:
+                if block.get('type') in ['paragraph', 'header', 'quote', 'Header']:
                     text = block.get('data', {}).get('text', '')
                     # Remove HTML tags and count words
                     text = re.sub(r'<[^>]+>', '', text)
                     word_count += len(text.split())
-                elif block.get('type') == 'list':
+                elif block.get('type') in ['list', 'List']:  # Handle both cases
                     items = block.get('data', {}).get('items', [])
                     for item in items:
-                        text = re.sub(r'<[^>]+>', '', item)
+                        text = re.sub(r'<[^>]+>', '', str(item))
                         word_count += len(text.split())
         
         # Calculate reading time (200 words per minute)
