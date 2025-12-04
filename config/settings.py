@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'enquiries',
     'django_editorjs_fields',
     'blogs',
+    'seo',
 ]
 
 MIDDLEWARE = [

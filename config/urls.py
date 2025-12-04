@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('enquiries.urls')),
     path('api/', include('blogs.urls')),  # Add this
+    path('api/', include('seo.urls')),
     path('editorjs/', include('django_editorjs_fields.urls')),  # Add this
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

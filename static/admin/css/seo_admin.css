@@ -1,0 +1,39 @@
+/* ============================================================================
+FILE: static/admin/css/seo_admin.css
+============================================================================ */
+/* Custom styles for SEO Admin */
+/* Improve form layout */
+.field-page_title input,
+.field-meta_description input,
+.field-og_title input,
+.field-twitter_title input {
+width: 100%;
+font-size: 14px;
+}
+/* Character count helper */
+.field-page_title::after {
+content: "Recommended: 50-60 characters";
+display: block;
+font-size: 11px;
+color: #666;
+margin-top: 5px;
+}
+.field-meta_description::after {
+content: "Recommended: 150-160 characters";
+display: block;
+font-size: 11px;
+color: #666;
+margin-top: 5px;
+}
+/* Status badges */
+.field-status_badge {
+text-align: center;
+}
+/* Priority display */
+.field-priority_display {
+text-align: center;
+}
+/* Make page_id column monospace */
+.field-page_id_display {
+font-family: 'Courier New', monospace;
+}
