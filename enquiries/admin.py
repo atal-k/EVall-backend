@@ -32,3 +32,8 @@ class CustomerFeedbackAdmin(admin.ModelAdmin):
 class TestDriveBookingAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'contact_number', 'test_drive_date', 'created_at')
     readonly_fields = ('raw_payload', 'created_at', 'updated_at')
+
+@admin.register(models.DownloadBrochure)
+class DownloadBrochureAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'company_name', 'contact_number', 'email', 'created_at')
+    readonly_fields = ('raw_payload', 'created_at', 'updated_at')

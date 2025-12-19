@@ -174,3 +174,19 @@ class TestDriveBooking(TimeStampedModel):
 
     def __str__(self):
         return f"TestDriveBooking({self.id}) - {self.name}"
+
+class DownloadBrochure(TimeStampedModel):
+    """Stores test drive booking data submitted via /api/download-brochure"""
+
+    # Customer details
+    name = models.CharField(max_length=255, null=True)
+    company_name = models.CharField(max_length=255, null=True)
+    contact_number = models.CharField(max_length=64, null=True)
+    email = models.EmailField(null=True)
+    raw_payload = JSONField(null=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"DownloadBrochure({self.id}) - {self.name}"

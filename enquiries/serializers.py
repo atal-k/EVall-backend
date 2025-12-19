@@ -85,3 +85,10 @@ class TestDriveBookingSerializer(serializers.ModelSerializer):
         if not isinstance(value, (list, tuple)):
             raise serializers.ValidationError('selectedModels must be a list')
         return list(value)
+
+class DownloadBrochureSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.DownloadBrochure
+        fields = '__all__'
+        read_only_fields = ('id', 'created_at', 'updated_at')
